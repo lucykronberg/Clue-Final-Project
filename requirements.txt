@@ -8,4 +8,4 @@ gunicorn
 Flask-OAuthlib
 Flask-PyMongo
 pymongo
-Flask_APScheduler
+flask_apscheduler

@@ -34,10 +34,10 @@ github = oauth.remote_app(
 )
 
 #Connect to database
-url = os.environ["MONGO_CONNECTION_STRING"]
+"""url = os.environ["MONGO_CONNECTION_STRING"]
 client = pymongo.MongoClient(url)
 db = client[os.environ["MONGO_DBNAME"]]
-collection = db['posts'] #TODO: put the name of the collection here
+collection = db['posts'] #TODO: put the name of the collection here"""
 
 # Send a ping to confirm a successful connection
 try:

@@ -110,7 +110,8 @@ def renderPage3():
     Weapon= request.args.get("Weapon")
     Room= request.args.get("Room")
     
-    correctSuspect= "Miss Scarlett"
+    
+    correctSuspect= "Scarlett"
     correctWeapon= "Candlestick"
     correctRoom= "Ballroom"
     

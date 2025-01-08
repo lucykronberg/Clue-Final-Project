@@ -102,6 +102,14 @@ def renderPage2():
 @github.tokengetter
 def get_github_oauth_token():
     return session['github_token']
+    
+@app.route('/page3')
+def renderPage3():
+    correctSuspect= "Miss Scarlett"
+    correctWeapon= "Candlestick"
+    correctRoom= "Ballroom"
+    
+    return render_template('page3.html')
 
 
 if __name__ == '__main__':

@@ -109,7 +109,19 @@ def renderPage3():
     correctWeapon= "Candlestick"
     correctRoom= "Ballroom"
     
-    return render_template('page3.html')
+    Suspect= request.args.get("Suspect")
+    Weapon= request.args.get("Weapon")
+    Room= request.args.get("Room")
+    
+    outcome=""
+    if Suspect==correctSuspect and Weapon==correctWeapon and Room==correctRoom:
+        outcome="solved the mystery!"
+    else:
+        outcome="failed! The murderer is still out there..."
+    
+    
+    
+    return render_template('page3.html', outcome=outcome)
 
 
 if __name__ == '__main__':

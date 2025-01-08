@@ -105,16 +105,17 @@ def get_github_oauth_token():
     
 @app.route('/page3')
 def renderPage3():
-    correctSuspect= "Miss Scarlett"
-    correctWeapon= "Candlestick"
-    correctRoom= "Ballroom"
     
     Suspect= request.args.get("Suspect")
     Weapon= request.args.get("Weapon")
     Room= request.args.get("Room")
     
+    correctSuspect= "Miss Scarlett"
+    correctWeapon= "Candlestick"
+    correctRoom= "Ballroom"
+    
     outcome=""
-    if Suspect==correctSuspect and Weapon==correctWeapon and Room==correctRoom:
+    if Suspect==correctSuspect and Room==correctRoom and  Weapon==correctWeapon:
         outcome="solved the mystery!"
     else:
         outcome="failed! The murderer is still out there..."

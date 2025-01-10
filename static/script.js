@@ -1,6 +1,6 @@
-const suspects = ["Col. Mustard", "Miss Scarlett", "Mrs. White", "Prof. Plum", "Mrs. Peacock", "Mr. Green"];
-const weapons = ["Rope", "Revolver", "Dagger", "Candlestick", "Wrench", "Lead Pipe"];
-const rooms = ["Lounge", "Hall", "Conservatory", "Study", "Library", "Billiard Room", "Kitchen", "Ballroom", "Dining Room"];
+const suspects = ["Ms.Adams", "Tormey", "Ms.Barr", "Mr.Lotze", "Mr. Reussner", "Jose"];
+const weapons = ["Wires", "Calculator", "Ruler", "Pencil", "Stapler", "Barbie"];
+const rooms = ["Quad", "Gym", "Hallways", "Senior Lawn", "Library", "Cafeteria", "VADA building", "Theater"];
 
 $(document).ready(function() {
 	$("#guidedvid").click(function(){

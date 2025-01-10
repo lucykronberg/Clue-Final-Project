@@ -9,14 +9,19 @@
 
   <p>Lorem ipsum sit dolor amet.</p>
   
- <div class="d-flex justify-content-around btn btn-light mb-3" >
-  <input type="button"  class="p-2 bg-secondary" id="buttonS" value="Suspect">
-  <p id="randomS"></p>
-  <input type="button" class="p-2 bg-secondary" id="buttonW" value="Weapon">
-  <p id="randomW"></p>
-  <input type="button" class="p-2 bg-secondary" id="buttonR" value="Room">
-  <p id="randomR"></p>
+<div class="d-flex justify-content-around btn btn-light mb-3" >
+ <div class="row">
+  <div class="col">
+  <input type="button"  class="btn p-2 bg-secondary" id="buttonS" value="Suspect">
+  <p id="randomS"></p></div>
+  <div class="col">
+  <input type="button" class="btn p-2 bg-secondary" id="buttonW" value="Weapon">
+  <p id="randomW"></p></div>
+  <div class="col">
+  <input type="button" class="btn p-2 bg-secondary" id="buttonR" value="Room">
+  <p id="randomR"></p></div>
  </div>
+</div>
  
   <pre>
     {{ dump_user_data }}

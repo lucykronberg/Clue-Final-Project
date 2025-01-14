@@ -2,7 +2,7 @@
 
 {% set active_page = "page2" %}
 
-{% block title %}page2{% endblock %}
+{% block title %}Accusation{% endblock %}
 
 {% block content %}
  <h1>This is Page 2</h1>
@@ -41,6 +41,10 @@
 
 		 <label for="test"> with the </label>
 
+  <h1>Submit an Accusation</h1>
+
+  <p>Whodunnit?</p>
+
 		<span style="width:200px;">
 		  <select name="Weapon" required>
 			<option value="0" disabled>Select a weapon:</option>
@@ -53,9 +57,7 @@
 		  </select>
 		</span>
 		<label for="test">!</label>
-		</p>
-		
-		
+		</p>	
 		<button type="submit" class="btn btn-secondary mt-3">Submit</button>
 	</form>
 {% endblock %}

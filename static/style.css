@@ -1,7 +1,12 @@
 span {
 	display: inline;
 	}
-
 body {
 	background-color:#92a192;
+  text-align: center;
 }
+.text {
+	padding-left: 5%;     
+	padding-right: 5%;    
+}
+

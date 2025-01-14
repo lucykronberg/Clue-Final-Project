@@ -1,8 +1,8 @@
 from flask import Flask, redirect, url_for, session, request, jsonify, render_template, flash
+from flask_oauthlib.client import OAuth
 from markupsafe import Markup
 from flask_apscheduler import APScheduler
 from apscheduler.schedulers.background import BackgroundScheduler
-from flask_oauthlib.client import OAuth
 from bson.objectid import ObjectId
 
 import pprint
@@ -14,13 +14,12 @@ import sys
 app = Flask(__name__)
 
 app.debug = False #Change this to False for production
-#os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1' #Remove once done debugging
+os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1' #Remove once done debugging
 
 app.secret_key = os.environ['SECRET_KEY'] #used to sign session cookies
 oauth = OAuth(app)
-oauth.init_app(app) #initialize the app to be able to make requests for user information
+oauth.init_app(app) 
 
-#Set up GitHub as OAuth provider
 github = oauth.remote_app(
     'github',
     consumer_key=os.environ['GITHUB_CLIENT_ID'], #your web app's "username" for github's OAuth
@@ -33,22 +32,19 @@ github = oauth.remote_app(
     authorize_url='https://github.com/login/oauth/authorize' #URL for github's OAuth login
 )
 
-#Connect to database
-"""url = os.environ["MONGO_CONNECTION_STRING"]
-client = pymongo.MongoClient(url)
-db = client[os.environ["MONGO_DBNAME"]]
-collection = db['posts'] #TODO: put the name of the collection here"""
+connection_string = os.environ["MONGO_CONNECTION_STRING"]
+user_infodb_name = os.environ["MONGO_DBNAME"]
 
-# Send a ping to confirm a successful connection
+client = pymongo.MongoClient(connection_string)
+user_savedb = client[user_infodb_name]
+mongoUser_save = user_savedb['User_save']
+
 try:
     client.admin.command('ping')
     print("Pinged your deployment. You successfully connected to MongoDB!")
 except Exception as e:
     print(e)
 
-#context processors run before templates are rendered and add variable(s) to the template's context
-#context processors must return a dictionary 
-#this context processor adds the variable logged_in to the conext for all templates
 @app.context_processor
 def inject_logged_in():
     return {"logged_in":('github_token' in session)}
@@ -57,10 +53,9 @@ def inject_logged_in():
 def home():
     return render_template('home.html')
 
-#redirect to GitHub's OAuth page and confirm callback URL
 @app.route('/login')
 def login():   
-    return github.authorize(callback=url_for('authorized', _external=True, _scheme='https')) #callback URL must match the pre-configured callback URL
+    return github.authorize(callback=url_for('authorized', _external=True, _scheme='http')) #callback URL must match the pre-configured callback URL
 
 @app.route('/logout')
 def logout():
@@ -78,6 +73,11 @@ def authorized():
         try:
             session['github_token'] = (resp['access_token'], '') #save the token to prove that the user logged in
             session['user_data']=github.get('user').data
+            username = session['user_data']['login']
+            user = mongoUser_save.find_one({"Username":username})
+            if user == None:
+                doc = {"Username": username, "Murderer": "", "Target_place": "", "Weapon": "", "People": [""], "Places": [""], "Objects": [""]}
+                mongoUser_save.insert_one(doc)
             message = 'You were successfully logged in as ' + session['user_data']['login'] + '.'
         except Exception as inst:
             session.clear()
@@ -89,9 +89,10 @@ def authorized():
 @app.route('/page1')
 def renderPage1():
     if 'user_data' in session:
-        user_data_pprint = pprint.pformat(session['user_data'])#format the user data nicely
+        user_data_pprint = pprint.pformat(session['user_data'])
     else:
         user_data_pprint = '';
+        return github.authorize(callback=url_for('authorized', _external=True, _scheme='http'))
     return render_template('page1.html',dump_user_data=user_data_pprint)
 
 @app.route('/page2')

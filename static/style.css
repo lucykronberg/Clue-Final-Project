@@ -1,4 +1,12 @@
+
 .smtn{
 	
 	margin:auto;
 } 
+body {
+	text-align: center;
+}
+.text {
+	padding-left: 5%;     
+	padding-right: 5%;    
+}

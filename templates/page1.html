@@ -6,7 +6,42 @@
 
 {% block content %}
   <h1>Cards</h1>
+  <p>Get a hand of 3 cards to start solving. Tip! The cards you get tell you who DIDN'T do it, where it WASN'T, WHAT it wasn't</p>
+  
+<div class="d-flex justify-content-around btn btn-light mb-3" >
+ <div class="row">
+  <div class="col">
+  <input type="button"  class="btn p-2 bg-secondary smtn" id="buttonS" value="Suspect">
+  <p id="randomS"></p></div>
+  <div class="col">
+  <input type="button" class="btn p-2 bg-secondary smtn" id="buttonW" value="Weapon">
+  <p id="randomW"></p></div>
+  <div class="col">
+  <input type="button" class="btn p-2 bg-secondary smtn" id="buttonR" value="Room">
+  <p id="randomR"></p></div>
+ </div>
+</div>
 
-  <p>Get a hand of 3 cards to start solving.</p>
+<br>
+
+
+ <div class="row">
+    <div class="col-sm-4 btn bg-dark text-white"><img class = "size" src = "/static/csa.png"></div>
+    <div class="col-sm-4 btn bg-dark text-white"><img class = "size" src = "/static/vada.png"></div>
+    <div class="col-sm-4 btn bg-dark text-white"><img class = "size" src = "/static/gym.png"></div>
+  </div>
+  
+  <div class="row">
+    <div class="col-sm-4 btn bg-dark text-white" data-bs-toggle="popover" title="Popover Header" data-bs-content="Some content inside the popover"><img class = "size" src = "/static/theater.png"></div>
+    <div class="col-sm-4 btn bg-dark text-white"><img class = "size" src = "/static/quad.png"></div>
+    <div class="col-sm-4 btn bg-dark text-white"><img class = "size" src = "/static/cafeteria.png"></div>
+  </div>
+ 
+   <div class="row">
+    <div class="col-sm-4 btn bg-dark text-white"><img class = "size" src = "/static/library.png"></div>
+    <div class="col-sm-4 btn bg-dark text-white"><img class = "size" src = "/static/hallway.png"></div>
+    <div class="col-sm-4 btn bg-dark text-white"><img class = "size" src = "/static/lawn.png"></div>
+ </div>
+  
 
 {% endblock %}

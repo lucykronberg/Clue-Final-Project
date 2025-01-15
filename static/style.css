@@ -1,16 +1,20 @@
+span {
+	display: inline;
+	}
 
 .smtn{
-	
 	margin:auto;
 } 
+
 body {
-	text-align: center;
+	background-color:#92a192;
+  text-align: center;
 }
+
 .text {
 	padding-left: 5%;     
 	padding-right: 5%;    
 }
-
 
 .size {
 	width:95%;

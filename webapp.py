@@ -10,10 +10,12 @@ import os
 import time
 import pymongo
 import sys
+import random
  
 app = Flask(__name__)
 
-app.debug = False #Change this to False for production
+app.debug = True #Change this to False for production
+
 os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1' #Remove once done debugging
 
 app.secret_key = os.environ['SECRET_KEY'] #used to sign session cookies
@@ -76,7 +78,13 @@ def authorized():
             username = session['user_data']['login']
             user = mongoUser_save.find_one({"Username":username})
             if user == None:
-                doc = {"Username": username, "Murderer": "", "Target_place": "", "Weapon": "", "People": [""], "Places": [""], "Objects": [""]}
+                People = ["Mrs. Adams", "Tormey", "Mr. Reussner", "Mrs. Barr", "Jose", "Mr. Lotze"]
+                murderer = random.choice(People)
+                Places = ["Quad", "Gym", "Hallway", "Senior Lawn", "Cafeteria", "VADA building", "CS academy", "Library", "Theater"]
+                target_place = random.choice(Places)
+                Object = ["Wires", "Ruler", "Calculator", "Stapler", "Pencil", "Barbie"]
+                weapon = random.choice(Object)
+                doc = {"Username": username, "Murderer": murderer, "Target_place": target_place, "Weapon": weapon, "People": [""], "Places": [""], "Objects": [""]}
                 mongoUser_save.insert_one(doc)
             message = 'You were successfully logged in as ' + session['user_data']['login'] + '.'
         except Exception as inst:
@@ -103,7 +111,33 @@ def renderPage2():
 @github.tokengetter
 def get_github_oauth_token():
     return session['github_token']
-
+    
+@app.route('/page3')
+def renderPage3():
+    
+    Suspect= request.args.get("Suspect")
+    Weapon= request.args.get("Weapon")
+    Room= request.args.get("Room")
+    print(Suspect)
+    print(Weapon)
+    print(Room)
+    
+    username = session['user_data']['login']
+    for doc in mongoUser_save.find({"Username":username}):
+        correctSuspect = doc["Murderer"]
+        correctRoom = doc["Target_place"]
+        correctWeapon = doc["Weapon"]
+        print(correctSuspect)
+        print(correctWeapon)
+        print(correctRoom)
+  
+    outcome=""
+    if Suspect==correctSuspect and Weapon==correctWeapon and Room==correctRoom:
+        outcome="solved the mystery!"
+    else:
+        outcome="failed! The murderer is still out there..."
+     
+    return render_template('page3.html', outcome=outcome)
 
 if __name__ == '__main__':
     app.run()

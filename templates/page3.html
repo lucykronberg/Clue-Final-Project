@@ -1,3 +1,7 @@
+{% extends "layout.html" %}
+
+{% set active_page = "page3" %}
+
 {% block title %}page3{% endblock %}
 
 {% block content %}
@@ -5,11 +9,5 @@
 
 
   <p>You {{ outcome }}</p>
-  
- 
-
-  <pre>
-    {{ dump_user_data }}
-  </pre>
 
 {% endblock %}

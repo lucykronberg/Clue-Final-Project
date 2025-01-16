@@ -53,7 +53,15 @@ def inject_logged_in():
 
 @app.route('/')
 def home():
+    """username = session['user_data']['login']
+    user = mongoUser_save.find_one({"Username":username})
+    if user == None:
+        file_state = "start"
+    else: 
+        file_state = "resume"""
     return render_template('home.html')
+    
+    """, file_state=file_state"""
 
 @app.route('/login')
 def login():   

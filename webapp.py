@@ -88,11 +88,24 @@ def authorized():
             if user == None:
                 People = ["Mrs. Adams", "Tormey", "Mr. Reussner", "Mrs. Barr", "Jose", "Mr. Lotze"]
                 murderer = random.choice(People)
+                People.remove(murderer)
                 Places = ["Quad", "Gym", "Hallway", "Senior Lawn", "Cafeteria", "VADA building", "CS academy", "Library", "Theater"]
                 target_place = random.choice(Places)
-                Object = ["Wires", "Ruler", "Calculator", "Stapler", "Pencil", "Barbie"]
-                weapon = random.choice(Object)
-                doc = {"Username": username, "Murderer": murderer, "Target_place": target_place, "Weapon": weapon, "People": [""], "Places": [""], "Objects": [""]}
+                Places.remove(target_place)
+                Objects = ["Wires", "Ruler", "Calculator", "Stapler", "Pencil", "Barbie"]
+                weapon = random.choice(Objects)
+                Objects.remove(weapon)
+                not_murderers = []
+                not_places = []
+                not_weapons = []
+                for x in range(2):
+                    not_murderers.append(random.choice(People))
+                    People.remove(not_murderers[x])
+                    not_places.append(random.choice(Places))
+                    Places.remove(not_places[x])
+                    not_weapons.append(random.choice(Objects))
+                    Objects.remove(not_weapons[x])
+                doc = {"Username": username, "Murderer": murderer, "Target_place": target_place, "Weapon": weapon, "People": not_murderers, "Places": not_places, "Objects": not_weapons}
                 mongoUser_save.insert_one(doc)
             message = 'You were successfully logged in as ' + session['user_data']['login'] + '.'
         except Exception as inst:
@@ -109,7 +122,12 @@ def renderPage1():
     else:
         user_data_pprint = '';
         return github.authorize(callback=url_for('authorized', _external=True, _scheme='http'))
-    return render_template('page1.html',dump_user_data=user_data_pprint)
+    username = session['user_data']['login']
+    for doc in mongoUser_save.find({"Username":username}):
+        hintS1 = doc["People"]
+        hintR1 = doc["Places"]
+        hintW1 = doc["Objects"]
+    return render_template('page1.html',dump_user_data=user_data_pprint,hintS1=hintS1[0],hintR1=hintR1[0],hintW1=hintW1[0])
 
 @app.route('/page2')
 def renderPage2():
@@ -126,18 +144,12 @@ def renderPage3():
     Suspect= request.args.get("Suspect")
     Weapon= request.args.get("Weapon")
     Room= request.args.get("Room")
-    print(Suspect)
-    print(Weapon)
-    print(Room)
     
     username = session['user_data']['login']
     for doc in mongoUser_save.find({"Username":username}):
         correctSuspect = doc["Murderer"]
         correctRoom = doc["Target_place"]
         correctWeapon = doc["Weapon"]
-        print(correctSuspect)
-        print(correctWeapon)
-        print(correctRoom)
   
     outcome=""
     if Suspect==correctSuspect and Weapon==correctWeapon and Room==correctRoom:

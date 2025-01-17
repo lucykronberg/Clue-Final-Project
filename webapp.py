@@ -138,12 +138,16 @@ def renderPage2():
 def get_github_oauth_token():
     return session['github_token']
     
-@app.route('/page3')
+@app.route('/page3', methods=["GET","POST"])
 def renderPage3():
     
     Suspect= request.args.get("Suspect")
     Weapon= request.args.get("Weapon")
     Room= request.args.get("Room")
+    
+    correctSuspect= ""
+    correctWeapon= ""
+    correctRoom= ""
     
     username = session['user_data']['login']
     for doc in mongoUser_save.find({"Username":username}):
@@ -152,12 +156,15 @@ def renderPage3():
         correctWeapon = doc["Weapon"]
   
     outcome=""
+    repeat=""
     if Suspect==correctSuspect and Weapon==correctWeapon and Room==correctRoom:
         outcome="solved the mystery!"
+        repeat="Play again"
     else:
         outcome="failed! The murderer is still out there..."
+        repeat="Try again"
      
-    return render_template('page3.html', outcome=outcome)
+    return render_template('page3.html', outcome=outcome, repeat=repeat)
 
 if __name__ == '__main__':
     app.run()

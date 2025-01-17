@@ -5,8 +5,11 @@
 {% block title %}page3{% endblock %}
 
 {% block content %}
-	<h1 class="imagetoggler">Answer</h1>
-	<a href="https://sign-up-to-gamer-club.onrender.com/"><img src="/static/waltergeist.png" id="waltergeist" alt="The one who knocks" width= 100%></a>
-	<p>You {{ outcome }}</p>
+
+  <h1 class="imagetoggler">Answer</h1>
+  <a href="https://sign-up-to-gamer-club.onrender.com/"><img src="/static/waltergeist.png" id="waltergeist" alt="The one who knocks" width= 100%></a>
+  <p>You {{ outcome }}</p> 
+ 
+  <button type="button" class="btn btn-secondary">{{ repeat }}</button>
 
 {% endblock %}

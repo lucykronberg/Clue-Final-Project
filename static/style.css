@@ -17,6 +17,10 @@ body {
 }
 
 .size {
-	width:95%;
-	height:100%;
+	width:85%;
+	height:95%;
+}
+
+.cards-back {
+	background-color:#92a192;
 }

@@ -24,3 +24,8 @@ body {
 .cards-back {
 	background-color:#92a192;
 }
+
+#img1 {
+	width: 45%;
+	height:15%;
+}

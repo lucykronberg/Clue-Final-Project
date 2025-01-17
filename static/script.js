@@ -1,29 +1,30 @@
-const suspects = ["Ms.Adams", "Tormey", "Ms.Barr", "Mr.Lotze", "Mr. Reussner", "Jose"];
-const weapons = ["Wires", "Calculator", "Ruler", "Pencil", "Stapler", "Barbie"];
-const rooms = ["Quad", "Gym", "Hallways", "Senior Lawn", "Library", "Cafeteria", "VADA building", "Theater"];
-
 $(document).ready(function() {
-	$("#guidedvid").click(function(){
-		$(this).next().toggle();
+	$("#waltergeist").hide();
+	$(".imagetoggler").click(function(){
+		$("#waltergeist").toggle();
 	});
+	 
+	$("#randomS").hide();
+	$("#randomR").hide();
+	$("#randomW").hide();
 
 	$(".pageLinks").click(function(){
 		$(this).next().toggle();
 	});
 	
 	$("#buttonS").click(function() {
-		$("#randomS").text(suspects[Math.floor(Math.random() * suspects.length)]);
+		$("#randomS").show();
 		$("#buttonS").addClass("disabled");
 	});
-	$("#buttonW").click(function() {
-		$("#randomW").text(weapons[Math.floor(Math.random() * weapons.length)]);
-		$("#buttonW").addClass("disabled");
-	});
 	$("#buttonR").click(function() {
-		$("#randomR").text(rooms[Math.floor(Math.random() * rooms.length)]);
+		$("#randomR").show();
 		$("#buttonR").addClass("disabled");
 	});
-
-
-	
+	$("#buttonW").click(function() {
+		$("#randomW").show();
+		$("#buttonW").addClass("disabled");
+	});
+	$("#imagetoggler").click(function(){
+		$("#waltergeist").toggle();
+	});
 });

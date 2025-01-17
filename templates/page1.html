@@ -12,18 +12,17 @@
  <div class="row">
   <div class="col">
   <input type="button"  class="btn p-2 bg-secondary smtn" id="buttonS" value="Suspect">
-  <p id="randomS"></p></div>
-  <div class="col">
-  <input type="button" class="btn p-2 bg-secondary smtn" id="buttonW" value="Weapon">
-  <p id="randomW"></p></div>
+  <p id="randomS">{{ hintS1 }}</p></div>
   <div class="col">
   <input type="button" class="btn p-2 bg-secondary smtn" id="buttonR" value="Room">
-  <p id="randomR"></p></div>
+  <p id="randomR">{{ hintR1 }}</p></div>
+  <div class="col">
+  <input type="button" class="btn p-2 bg-secondary smtn" id="buttonW" value="Weapon">
+  <p id="randomW">{{ hintW1 }}</p></div>
  </div>
 </div>
 
 <br>
-
 
  <div class="row">
     <div class="col-sm-4 btn bg-dark text-white"  data-bs-toggle="popover" data-bs-placement="bottom" title="CSA" data-bs-content="Some content inside the popover"><img class = "size" src = "/static/csa.png"></div>
@@ -43,5 +42,4 @@
     <div class="col-sm-4 btn bg-dark text-white" data-bs-toggle="popover" data-bs-placement="top" title="Senior Lawn" data-bs-content="Some content inside the popover"><img class = "size" src = "/static/lawn.png"></div>
  </div>
   
-
 {% endblock %}

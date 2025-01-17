@@ -1,4 +1,8 @@
 
+const suspects = ["Ms.Adams", "Tormey", "Ms.Barr", "Mr.Lotze", "Mr. Reussner", "Jose"];
+const weapons = ["Wires", "Calculator", "Diet Dr Pepper", "Pencil", "Stapler", "Barbie"];
+const rooms = ["Quad", "Gym", "Hallways", "Senior Lawn", "Library", "Cafeteria", "VADA building", "Theater"];
+
 $(document).ready(function() {
 	$("#waltergeist").hide();
 	$(".imagetoggler").click(function(){

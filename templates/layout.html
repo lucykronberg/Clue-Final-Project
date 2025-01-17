@@ -20,13 +20,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+	
+	<script src="/static/script.js"></script>
     <title>{% block title %}{% endblock %} - My Webpage</title>
-
-	<link rel="icon" type="image/png" href="/question-mark/favicon-96x96.png" sizes="96x96" />
-	<link rel="icon" type="image/svg+xml" href="/question-mark/favicon.svg" />
-	<link rel="shortcut icon" href="/question-mark/favicon.ico" />
-	<link rel="apple-touch-icon" sizes="180x180" href="/question-mark/apple-touch-icon.png" />
-	<link rel="manifest" href="/question-mark/site.webmanifest" />
   </head>
   <body>
     {% include 'navbar.html' %}
@@ -34,6 +30,12 @@
     <div id="content">
       {% block content %}{% endblock %}
     </div>
+<script>
+var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+  return new bootstrap.Popover(popoverTriggerEl)
+})
+</script>
 
   </body>
 </html>

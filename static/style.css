@@ -1,12 +1,26 @@
 span {
 	display: inline;
 	}
+
+.smtn{
+	margin:auto;
+} 
+
 body {
 	background-color:#92a192;
   text-align: center;
 }
+
 .text {
 	padding-left: 5%;     
 	padding-right: 5%;    
 }
 
+.size {
+	width:85%;
+	height:95%;
+}
+
+.cards-back {
+	background-color:#92a192;
+}

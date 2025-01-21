@@ -25,21 +25,236 @@
 <br>
 
  <div class="row">
-    <div class="col-sm-4 btn bg-dark text-white"  data-bs-toggle="popover" data-bs-placement="bottom" title="CSA" data-bs-content="Some content inside the popover"><img class = "size" src = "/static/csa.png"></div>
-    <div class="col-sm-4 btn bg-dark text-white"  data-bs-toggle="popover" data-bs-placement="bottom" title="VADA" data-bs-content="Some content inside the popover"><img class = "size" src = "/static/vada.png"></div>
-    <div class="col-sm-4 btn bg-dark text-white"  data-bs-toggle="popover" data-bs-placement="bottom" title="Gym" data-bs-content="Some content inside the popover"><img class = "size" src = "/static/gym.png"></div>
+    <div class="col-sm-4 btn bg-dark text-white" title="CSA" data-bs-toggle="modal" data-bs-target="#csaModal"><img class = "size" src = "/static/csa.png"></div>
+    <div class="col-sm-4 btn bg-dark text-white" title="VADA" data-bs-toggle="modal" data-bs-target="#vadaModal"><img class = "size" src = "/static/vada.png"></div>
+    <div class="col-sm-4 btn bg-dark text-white" title="Gym" data-bs-toggle="modal" data-bs-target="#gymModal"><img class = "size" src = "/static/gym.png"></div>
   </div>
   
   <div class="row">
-    <div class="col-sm-4 btn bg-dark text-white" data-bs-toggle="popover" data-bs-placement="left" title="Theater" data-bs-content="Some content inside the popover"><img class = "size" src = "/static/theater.png"></div>
-    <div class="col-sm-4 btn bg-dark text-white" data-bs-toggle="popover" data-bs-placement="top" title="Quad" data-bs-content="Some content inside the popover"><img class = "size" src = "/static/quad.png"></div>
-    <div class="col-sm-4 btn bg-dark text-white"  data-bs-toggle="popover" data-bs-placement="top" title="Cafeteria" data-bs-content="Some content inside the popover"><img class = "size" src = "/static/cafeteria.png"></div>
+    <div class="col-sm-4 btn bg-dark text-white" title="Theater" data-bs-toggle="modal" data-bs-target="#theaterModal"><img class = "size" src = "/static/theater.png"></div>
+    <div class="col-sm-4 btn bg-dark text-white" title="Quad" data-bs-toggle="modal" data-bs-target="#quadModal"><img class = "size" src = "/static/quad.png"></div>
+    <div class="col-sm-4 btn bg-dark text-white" title="Cafeteria" data-bs-toggle="modal" data-bs-target="#cafModal"><img class = "size" src = "/static/cafeteria.png"></div>
   </div>
  
    <div class="row">
-    <div class="col-sm-4 btn bg-dark text-white" data-bs-toggle="popover" data-bs-placement="top" title="Library" data-bs-content="Some content inside the popover"><img class = "size" src = "/static/library.png"></div>
-    <div class="col-sm-4 btn bg-dark text-white" data-bs-toggle="popover" data-bs-placement="top" title="Hallway" data-bs-content="Some content inside the popover"><img class = "size" src = "/static/hallway.png"></div>
-    <div class="col-sm-4 btn bg-dark text-white" data-bs-toggle="popover" data-bs-placement="top" title="Senior Lawn" data-bs-content="Some content inside the popover"><img class = "size" src = "/static/lawn.png"></div>
+    <div class="col-sm-4 btn bg-dark text-white" title="Library" data-bs-toggle="modal" data-bs-target="#libraryModal"><img class = "size" src = "/static/library.png"></div>
+    <div class="col-sm-4 btn bg-dark text-white" title="Hallway" data-bs-toggle="modal" data-bs-target="#hallwayModal"><img class = "size" src = "/static/hallway.png"></div>
+    <div class="col-sm-4 btn bg-dark text-white" title="Senior Lawn" data-bs-toggle="modal" data-bs-target="#seniorModal"><img class = "size" src = "/static/lawn.png"></div>
  </div>
-  
+ 
+  <div class="modal" id="libraryModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Library</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <img class="modalImgSize" src="/static/tormey.png" alt="lotze in library">
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="hallwayModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Hallway</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <img class="modalImgSize" src="/static/lotze.png" alt="lotze">
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="seniorModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Senior Lawn</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <img class="modalImgSize" src="/static/jose.png" alt="jose">
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="csaModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">CSA</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+         <img class="modalImgSize" src="/static/adams.png" alt="adams">
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="vadaModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">VADA</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+         <img class="modalImgSize" src="/static/barr.png" alt="lotze in library">
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="gymModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Gym</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        Modal body..
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="theaterModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Theater</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        Modal body..
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="quadModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Quad</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+         <img class="modalImgSize" src="/static/reussner.png" alt="quad">
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="cafModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Cafeteria</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        Modal body..
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
 {% endblock %}

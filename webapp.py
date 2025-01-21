@@ -141,9 +141,9 @@ def get_github_oauth_token():
 @app.route('/page3', methods=["GET","POST"])
 def renderPage3():
     
-    Suspect= request.args.get("Suspect")
-    Weapon= request.args.get("Weapon")
-    Room= request.args.get("Room")
+    Suspect= request.form ["Suspect"]
+    Weapon= request.form ["Weapon"]
+    Room= request.form ["Room"]
     
     correctSuspect= ""
     correctWeapon= ""

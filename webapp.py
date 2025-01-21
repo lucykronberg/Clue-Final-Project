@@ -53,6 +53,7 @@ def inject_logged_in():
 
 @app.route('/')
 def home():
+    new_document()
     """username = session['user_data']['login']
     user = mongoUser_save.find_one({"Username":username})
     if user == None:
@@ -72,6 +73,34 @@ def logout():
     session.clear()
     flash('You were logged out.')
     return redirect('/')
+    
+@app.route('/new_document')
+def new_document():
+    username = session['user_data']['login']
+    user = mongoUser_save.find_one({"Username":username})
+    if user == None:
+        People = ["Mrs. Adams", "Tormey", "Mr. Reussner", "Mrs. Barr", "Jose", "Mr. Lotze"]
+        murderer = random.choice(People)
+        People.remove(murderer)
+        Places = ["Quad", "Gym", "Hallway", "Senior Lawn", "Cafeteria", "VADA building", "CS academy", "Library", "Theater"]
+        target_place = random.choice(Places)
+        Places.remove(target_place)
+        Objects = ["Wires", "Diet Dr Pepper", "Calculator", "Stapler", "Pencil", "Barbie"]
+        weapon = random.choice(Objects)
+        Objects.remove(weapon)
+        not_murderers = []
+        not_places = []
+        not_weapons = []
+        for x in range(2):
+            not_murderers.append(random.choice(People))
+            People.remove(not_murderers[x])
+            not_places.append(random.choice(Places))
+            Places.remove(not_places[x])
+            not_weapons.append(random.choice(Objects))
+            Objects.remove(not_weapons[x])
+        doc = {"Username": username, "Murderer": murderer, "Target_place": target_place, "Weapon": weapon, "People": not_murderers, "Places": not_places, "Objects": not_weapons}
+        mongoUser_save.insert_one(doc)
+    return render_template('home.html')
 
 @app.route('/login/authorized')
 def authorized():
@@ -83,7 +112,8 @@ def authorized():
         try:
             session['github_token'] = (resp['access_token'], '') #save the token to prove that the user logged in
             session['user_data']=github.get('user').data
-            username = session['user_data']['login']
+            new_document()
+            """username = session['user_data']['login']
             user = mongoUser_save.find_one({"Username":username})
             if user == None:
                 People = ["Mrs. Adams", "Tormey", "Mr. Reussner", "Mrs. Barr", "Jose", "Mr. Lotze"]
@@ -92,7 +122,7 @@ def authorized():
                 Places = ["Quad", "Gym", "Hallway", "Senior Lawn", "Cafeteria", "VADA building", "CS academy", "Library", "Theater"]
                 target_place = random.choice(Places)
                 Places.remove(target_place)
-                Objects = ["Wires", "Ruler", "Calculator", "Stapler", "Pencil", "Barbie"]
+                Objects = ["Wires", "Diet Dr Pepper", "Calculator", "Stapler", "Pencil", "Barbie"]
                 weapon = random.choice(Objects)
                 Objects.remove(weapon)
                 not_murderers = []
@@ -106,14 +136,13 @@ def authorized():
                     not_weapons.append(random.choice(Objects))
                     Objects.remove(not_weapons[x])
                 doc = {"Username": username, "Murderer": murderer, "Target_place": target_place, "Weapon": weapon, "People": not_murderers, "Places": not_places, "Objects": not_weapons}
-                mongoUser_save.insert_one(doc)
+                mongoUser_save.insert_one(doc)"""
             message = 'You were successfully logged in as ' + session['user_data']['login'] + '.'
         except Exception as inst:
             session.clear()
             print(inst)
             message = 'Unable to login, please try again.', 'error'
     return render_template('message.html', message=message)
-
 
 @app.route('/page1')
 def renderPage1():
@@ -131,16 +160,19 @@ def renderPage1():
 
 @app.route('/page2')
 def renderPage2():
+    if 'user_data' in session:
+        user_data_pprint = pprint.pformat(session['user_data'])
+    else:
+        user_data_pprint = '';
+        return github.authorize(callback=url_for('authorized', _external=True, _scheme='http'))
     return render_template('page2.html')
 
-#the tokengetter is automatically called to check who is logged in.
 @github.tokengetter
 def get_github_oauth_token():
     return session['github_token']
     
 @app.route('/page3', methods=["GET","POST"])
 def renderPage3():
-    
     Suspect= request.form ["Suspect"]
     Weapon= request.form ["Weapon"]
     Room= request.form ["Room"]
@@ -163,8 +195,22 @@ def renderPage3():
     else:
         outcome="failed! The murderer is still out there..."
         repeat="Try again"
+    print(Suspect)
+    print(Weapon)
+    print(Room)
+    print(correctSuspect)
+    print(correctWeapon)
+    print(correctRoom)
      
     return render_template('page3.html', outcome=outcome, repeat=repeat)
-
+    
+@app.route('/new_game')
+def new_game():
+    username = session['user_data']['login']
+    user = mongoUser_save.find_one({"Username":username})
+    mongoUser_save.delete_one({"Username":username})
+    new_document()
+    return render_template('home.html')
+    
 if __name__ == '__main__':
     app.run()

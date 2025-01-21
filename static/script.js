@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 const suspects = ["Ms.Adams", "Tormey", "Ms.Barr", "Mr.Lotze", "Mr. Reussner", "Jose"];
 const weapons = ["Wires", "Calculator", "Diet Dr Pepper", "Pencil", "Stapler", "Barbie"];
@@ -11,6 +12,8 @@ const Jose = ["The only thing that’s REALLY being murdered right now is the cl
 const Tormey = ["I heard clicking sounds before a scream. Clacking ones too if you will.", "I’m so mad. First someone steals my Aztec death whistle now my Barbie. I was going to auction it!", "I heard a pop and maybe a fizz? Riiiight before the screaming started…", "You should be taking down notes.", "Now my plays can’t be held together!", "Is this why I had trouble turning on the TV to show my slides today?"]
 const Lotze = ["I swear students are always stealing my calculators.", "This murderer has taste!", "I’m pretty sure that’s in unit 4 of physics? We didn’t get to that though because of the block schedule.", "I found a sample of the  murder weapon, which was made of polyvinyl chloride, or PVC. Total feta.", "The murder weapon looked like a gun, but none of us were given anything like that…were we?", "It’s not LEAD it’s GRAPHITE people."]
 
+=======
+>>>>>>> 369e1e1987c9a880504bcb7ca58fccad70ccf733
 $(document).ready(function() {
 	$("#waltergeist").hide();
 	$(".imagetoggler").click(function(){

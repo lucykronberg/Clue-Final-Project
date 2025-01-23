@@ -100,9 +100,9 @@ def new_document():
             Places.remove(not_places[x])
             not_weapons.append(random.choice(Objects))
             Objects.remove(not_weapons[x])
-        People = ["adams", "tormey", "reussner", "barr", "jose", "lotze", "white", "white", "white"]
-        random.shuffle(People)
-        doc = {"Username": username, "Murderer": murderer, "Target_place": target_place, "Weapon": weapon, "People": not_murderers, "Places": not_places, "Objects": not_weapons, "People_locations": People}
+        random = ["0", "1", "2", "3", "4", "5", "6", "7", "8"]
+        random.shuffle(random)
+        doc = {"Username": username, "Murderer": murderer, "Target_place": target_place, "Weapon": weapon, "People": not_murderers, "Places": not_places, "Objects": not_weapons, "People_locations": random}
         mongoUser_save.insert_one(doc)       
     return render_template('home.html')
 
@@ -160,7 +160,11 @@ def renderPage1():
         hintS1 = doc["People"]
         hintR1 = doc["Places"]
         hintW1 = doc["Objects"]
-        People = doc["People_locations"]
+        random = doc["People_locations"]
+        Suspects = ["adams", "tormey", "reussner", "barr", "jose", "lotze", "white", "white", "white"]
+        People = []
+        for x in range(9):
+            People.append(Suspects[random[x]])
     return render_template('page1.html',dump_user_data=user_data_pprint,hintS1=hintS1[0],hintR1=hintR1[0],hintW1=hintW1[0],Place0=People[0],Place1=People[1],Place2=People[2],Place3=People[3],Place4=People[4],Place5=People[5],Place6=People[6],Place7=People[7],Place8=People[8])
 
 @app.route('/page2')

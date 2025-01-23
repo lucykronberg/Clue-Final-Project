@@ -51,9 +51,11 @@ except Exception as e:
 def inject_logged_in():
     return {"logged_in":('github_token' in session)}
 
+
 @app.route('/')
 def home():
-    new_document()
+    if "user-data" in session:
+        new_document()
     """username = session['user_data']['login']
     user = mongoUser_save.find_one({"Username":username})
     if user == None:
@@ -156,6 +158,10 @@ def renderPage1():
         hintS1 = doc["People"]
         hintR1 = doc["Places"]
         hintW1 = doc["Objects"]
+        
+    
+    
+    
     return render_template('page1.html',dump_user_data=user_data_pprint,hintS1=hintS1[0],hintR1=hintR1[0],hintW1=hintW1[0])
 
 @app.route('/page2')
@@ -190,7 +196,7 @@ def renderPage3():
     outcome=""
     repeat=""
     if Suspect==correctSuspect and Weapon==correctWeapon and Room==correctRoom:
-        outcome="solved the mystery!"
+        outcome="solved the mystery! Play again to start a whole new one."
         repeat="Play again"
     else:
         outcome="failed! The murderer is still out there..."

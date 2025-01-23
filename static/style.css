@@ -21,9 +21,6 @@ body {
 	height:95%;
 }
 
-.cards-back {
-	background-color:#92a192;
-}
 
 #img1 {
 	width: 55%;
@@ -35,4 +32,9 @@ body {
 	margin-right: 100%;
 	width: 40%;
 	height: 50%;
+}
+
+.sizeC {
+	width:50%;
+	height:90%;
 }

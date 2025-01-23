@@ -11,6 +11,7 @@ import time
 import pymongo
 import sys
 import random
+import json 
  
 app = Flask(__name__)
 
@@ -54,7 +55,11 @@ def inject_logged_in():
 
 @app.route('/')
 def home():
+<<<<<<< HEAD
     if "user-data" in session:
+=======
+    if "user_data" in session:
+>>>>>>> 766431a5b26c9cceeacb666b07f9126514ddad96
         new_document()
     """username = session['user_data']['login']
     user = mongoUser_save.find_one({"Username":username})
@@ -100,8 +105,10 @@ def new_document():
             Places.remove(not_places[x])
             not_weapons.append(random.choice(Objects))
             Objects.remove(not_weapons[x])
-        doc = {"Username": username, "Murderer": murderer, "Target_place": target_place, "Weapon": weapon, "People": not_murderers, "Places": not_places, "Objects": not_weapons}
-        mongoUser_save.insert_one(doc)
+        random = ["0", "1", "2", "3", "4", "5", "6", "7", "8"]
+        random.shuffle(random)
+        doc = {"Username": username, "Murderer": murderer, "Target_place": target_place, "Weapon": weapon, "People": not_murderers, "Places": not_places, "Objects": not_weapons, "People_locations": random}
+        mongoUser_save.insert_one(doc)       
     return render_template('home.html')
 
 @app.route('/login/authorized')
@@ -158,11 +165,20 @@ def renderPage1():
         hintS1 = doc["People"]
         hintR1 = doc["Places"]
         hintW1 = doc["Objects"]
+<<<<<<< HEAD
         
     
     
     
     return render_template('page1.html',dump_user_data=user_data_pprint,hintS1=hintS1[0],hintR1=hintR1[0],hintW1=hintW1[0])
+=======
+        random = doc["People_locations"]
+        Suspects = ["adams", "tormey", "reussner", "barr", "jose", "lotze", "white", "white", "white"]
+        People = []
+        for x in range(9):
+            People.append(Suspects[random[x]])
+    return render_template('page1.html',dump_user_data=user_data_pprint,hintS1=hintS1[0],hintR1=hintR1[0],hintW1=hintW1[0],Place0=People[0],Place1=People[1],Place2=People[2],Place3=People[3],Place4=People[4],Place5=People[5],Place6=People[6],Place7=People[7],Place8=People[8])
+>>>>>>> 766431a5b26c9cceeacb666b07f9126514ddad96
 
 @app.route('/page2')
 def renderPage2():
@@ -201,12 +217,6 @@ def renderPage3():
     else:
         outcome="failed! The murderer is still out there..."
         repeat="Try again"
-    print(Suspect)
-    print(Weapon)
-    print(Room)
-    print(correctSuspect)
-    print(correctWeapon)
-    print(correctRoom)
      
     return render_template('page3.html', outcome=outcome, repeat=repeat)
     

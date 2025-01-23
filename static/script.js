@@ -1,3 +1,4 @@
+
 $(document).ready(function() {
 	$("#waltergeist").hide();
 	$(".imagetoggler").click(function(){

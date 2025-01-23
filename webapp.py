@@ -52,16 +52,9 @@ except Exception as e:
 def inject_logged_in():
     return {"logged_in":('github_token' in session)}
 
+
 @app.route('/')
 def home():
-    if "user_data" in session:
-        new_document()
-    """username = session['user_data']['login']
-    user = mongoUser_save.find_one({"Username":username})
-    if user == None:
-        file_state = "start"
-    else: 
-        file_state = "resume"""
     return render_template('home.html')
     
     """, file_state=file_state"""
@@ -160,6 +153,13 @@ def renderPage1():
         hintS1 = doc["People"]
         hintR1 = doc["Places"]
         hintW1 = doc["Objects"]
+
+        
+    
+    
+    
+    return render_template('page1.html',dump_user_data=user_data_pprint,hintS1=hintS1[0],hintR1=hintR1[0],hintW1=hintW1[0])
+
         random = doc["People_locations"]
         Suspects = ["adams", "tormey", "reussner", "barr", "jose", "lotze", "white", "white", "white"]
         murderer = doc["Murderer"]
@@ -197,7 +197,7 @@ def renderPage1():
         People.append(Suspects[rrandom[x]])
         RDialouge.append(Dialouge[rrandom[x]])
     return render_template('page1.html',dump_user_data=user_data_pprint,hintS1=hintS1[0],hintR1=hintR1[0],hintW1=hintW1[0],Place0=People[0],Place1=People[1],Place2=People[2],Place3=People[3],Place4=People[4],Place5=People[5],Place6=People[6],Place7=People[7],Place8=People[8],txt0=RDialouge[0],txt1 =RDialouge[1],txt2=RDialouge[2],txt3=RDialouge[3],txt4=RDialouge[4],txt5=RDialouge[5],txt6=RDialouge[6],txt7=RDialouge[7],txt8=RDialouge[8])
-
+    
 @app.route('/page2')
 def renderPage2():
     if 'user_data' in session:
@@ -230,7 +230,7 @@ def renderPage3():
     outcome=""
     repeat=""
     if Suspect==correctSuspect and Weapon==correctWeapon and Room==correctRoom:
-        outcome="solved the mystery!"
+        outcome="solved the mystery! Play again to start a whole new one."
         repeat="Play again"
     else:
         outcome="failed! The murderer is still out there..."

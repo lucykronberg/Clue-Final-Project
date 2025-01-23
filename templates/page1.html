@@ -4,7 +4,12 @@
 
 {% block title %}Cards{% endblock %}
 
+{% for item in People_locations %}
+<span onclick='somefunction({{item | tojson}})'>{{item}}</span><br>
+{% endfor %}
+
 {% block content %}
+	
   <h1>Cards</h1>
   <p>Get a hand of 3 cards to start solving. Tip! The cards you get tell you who DIDN'T do it, where it WASN'T, WHAT it wasn't</p>
   
@@ -53,8 +58,8 @@
       </div>
 
       <!-- Modal body -->
-      <div class="modal-body">
-        <img class="modalImgSize" src="/static/tormey.png" alt="lotze in library">
+      <div class="modal-body" id="library">
+        <img class="modalImgSize" src="/static/{{ Place0 }}.png">
       </div>
 
       <!-- Modal footer -->
@@ -78,7 +83,7 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-        <img class="modalImgSize" src="/static/lotze.png" alt="lotze">
+        <img class="modalImgSize" src="/static/{{ Place1 }}.png">
       </div>
 
       <!-- Modal footer -->
@@ -102,7 +107,7 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-        <img class="modalImgSize" src="/static/jose.png" alt="jose">
+        <img class="modalImgSize" src="/static/{{ Place2 }}.png">
       </div>
 
       <!-- Modal footer -->
@@ -126,7 +131,7 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-         <img class="modalImgSize" src="/static/adams.png" alt="adams">
+         <img class="modalImgSize" src="/static/{{ Place3 }}.png">
       </div>
 
       <!-- Modal footer -->
@@ -150,7 +155,7 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-         <img class="modalImgSize" src="/static/barr.png" alt="lotze in library">
+         <img class="modalImgSize" src="/static/{{ Place4 }}.png">
       </div>
 
       <!-- Modal footer -->
@@ -174,7 +179,7 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-        Modal body..
+        <img class="modalImgSize" src="/static/{{ Place5 }}.png">
       </div>
 
       <!-- Modal footer -->
@@ -198,7 +203,7 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-        Modal body..
+        <img class="modalImgSize" src="/static/{{ Place6 }}.png">
       </div>
 
       <!-- Modal footer -->
@@ -222,7 +227,7 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-         <img class="modalImgSize" src="/static/reussner.png" alt="quad">
+         <img class="modalImgSize" src="/static/{{ Place7 }}.png">
       </div>
 
       <!-- Modal footer -->
@@ -246,7 +251,7 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-        Modal body..
+        <img class="modalImgSize" src="/static/{{ Place8 }}.png">
       </div>
 
       <!-- Modal footer -->

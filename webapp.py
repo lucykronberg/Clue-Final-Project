@@ -85,7 +85,9 @@ def new_document():
             Objects.remove(not_weapons[x])
         rrandom = [0, 1, 2, 3, 4, 5, 6, 7, 8]
         random.shuffle(rrandom)
-        doc = {"Username": username, "Murderer": murderer, "Target_place": target_place, "Weapon": weapon, "People": not_murderers, "Places": not_places, "Objects": not_weapons, "People_locations": rrandom}
+        rherrings = ["I couldn’t see anything! The lights went out…and the next thing I know Mr. Al is dead!", "I’m not sure of anything anymore. Except for one thing, you can’t trust anyone around this school.", "I don’t know! One minute Mr. Al was here next to us… and the next he’s gone!", "This kind of publicity is going to ruin the school!", "I don’t what happened! All I do know is… I’m going to have to find a job at SM now. Bleh.", "The lights must’ve gone out because of the nearby fire. Poor Mr. Al."]
+        rherring = rherrings[random.randrange(0,6)]
+        doc = {"Username": username, "Murderer": murderer, "Target_place": target_place, "Weapon": weapon, "People": not_murderers, "Places": not_places, "Objects": not_weapons, "People_locations": rrandom, "Red_herring" = rherring}
         mongoUser_save.insert_one(doc)       
     return render_template('home.html')
 
@@ -125,7 +127,7 @@ def renderPage1():
         murderer = doc["Murderer"]
         target_place = doc["Target_place"]
         weapon = doc["Weapon"]
-    rherrings = ["I couldn’t see anything! The lights went out…and the next thing I know Mr. Al is dead!", "I’m not sure of anything anymore. Except for one thing, you can’t trust anyone around this school.", "I don’t know! One minute Mr. Al was here next to us… and the next he’s gone!", "This kind of publicity is going to ruin the school!", "I don’t what happened! All I do know is… I’m going to have to find a job at SM now. Bleh.", "The lights must’ve gone out because of the nearby fire. Poor Mr. Al."]
+        rherring = doc["Red_herring"]
     mBarr = ["I could only see a dark silhouette, but I know for sure the murderer had long hair tied in the back and wore boots.", "The murderer wore blue…and I swore I heard murmurs of hate for war?", "I only got a quick glimpse of the murderer, but they were wearing a red collared shirt", "", "The murderer wore green, I’m sure of it. Weirdly also, I swore they had some dirt on them. Like actual dirt.", "The murderer looked tall, and blonde I think? I can’t really remember it all happened so fast."]
     mAdams = ["I saw some shifty stuff going on in the quad, but it might have just been some afterschool band kids.", "I was away from Mr. Al when it all happened. But I swear I heard his screams echo near the stadium.", "I thought I heard someone running just outside of the classrooms.", "I could’ve sworn I saw grass stains on Mr. Al’s blazer when we found him…", "I heard something loud coming from the cafeteria. Better go check it out.", "I found a trail of dirt all around the high school. Someone must’ve gone through the gardens…", "The murder occurred someplace very dark…in the rooms with no windows.", "I couldn’t hear anything. Wherever Mr. Al was murdered, it must’ve been quiet.", "I heard I commotion in the theater right before the lights went out."]
     mReussner = ["I definitely heard something going on outside in the Quad. I might need Murphy for some moral support…", "I heard a scream from the gym…I didn’t think there was a home game today?", "Did you hear that noise out in the hallways, or was that just me?", "I can’t believe someone would fall asleep on the senior lawn? Someone must’ve been up way past their bedtime...", "I didn’t think the school food was THAT bad…", "Why is it always VADA involved in murder mysteries? The prom a couple years ago, and now this!", "I swore I saw Mr. Stewart running for help. Something must’ve happened around him…", "Hold on, I need to use my think time…Mr. Al had talked about wanting to visit Mrs. Bryans earlier. I pretty sure.", "Mr. Al was always in the spotlight, but I didn’t think he would die in it. This is not a boo yeah moment."]
@@ -149,7 +151,7 @@ def renderPage1():
     Dialouge.append(barr) 
     Dialouge.append(jose) 
     Dialouge.append(lotze)
-    Dialouge[Possible_People.index(murderer)] = rherrings[random.randrange(0,6)]
+    Dialouge[Possible_People.index(murderer)] = rherring]
     for x in range(3):
         Dialouge.append("") 
     RDialouge = []

@@ -101,31 +101,8 @@ def authorized():
         try:
             session['github_token'] = (resp['access_token'], '') #save the token to prove that the user logged in
             session['user_data']=github.get('user').data
+            session['user_login']=github.get('login').data
             new_document()
-            """username = session['user_data']['login']
-            user = mongoUser_save.find_one({"Username":username})
-            if user == None:
-                People = ["Mrs. Adams", "Tormey", "Mr. Reussner", "Mrs. Barr", "Jose", "Mr. Lotze"]
-                murderer = random.choice(People)
-                People.remove(murderer)
-                Places = ["Quad", "Gym", "Hallway", "Senior Lawn", "Cafeteria", "VADA building", "CS academy", "Library", "Theater"]
-                target_place = random.choice(Places)
-                Places.remove(target_place)
-                Objects = ["Wires", "Diet Dr Pepper", "Calculator", "Stapler", "Pencil", "Barbie"]
-                weapon = random.choice(Objects)
-                Objects.remove(weapon)
-                not_murderers = []
-                not_places = []
-                not_weapons = []
-                for x in range(2):
-                    not_murderers.append(random.choice(People))
-                    People.remove(not_murderers[x])
-                    not_places.append(random.choice(Places))
-                    Places.remove(not_places[x])
-                    not_weapons.append(random.choice(Objects))
-                    Objects.remove(not_weapons[x])
-                doc = {"Username": username, "Murderer": murderer, "Target_place": target_place, "Weapon": weapon, "People": not_murderers, "Places": not_places, "Objects": not_weapons}
-                mongoUser_save.insert_one(doc)"""
             message = 'You were successfully logged in as ' + session['user_data']['login'] + '.'
         except Exception as inst:
             session.clear()

@@ -155,7 +155,7 @@ def renderPage1():
     Dialouge.append(barr) 
     Dialouge.append(jose) 
     Dialouge.append(lotze)
-    Dialouge[Possible_People.index(murderer)] = rherring]
+    Dialouge[Possible_People.index(murderer)] = rherring
     for x in range(3):
         Dialouge.append("") 
     RDialouge = []

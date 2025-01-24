@@ -17,8 +17,6 @@ app = Flask(__name__)
 
 app.debug = True #Change this to False for production
 
-os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1' #Remove once done debugging
-
 app.secret_key = os.environ['SECRET_KEY'] #used to sign session cookies
 oauth = OAuth(app)
 oauth.init_app(app) 
@@ -61,7 +59,7 @@ def home():
 
 @app.route('/login')
 def login():   
-    return github.authorize(callback=url_for('authorized', _external=True, _scheme='http')) #callback URL must match the pre-configured callback URL
+    return github.authorize(callback=url_for('authorized', _external=True, _scheme='https')) #callback URL must match the pre-configured callback URL
 
 @app.route('/logout')
 def logout():
@@ -147,7 +145,7 @@ def renderPage1():
         user_data_pprint = pprint.pformat(session['user_data'])
     else:
         user_data_pprint = '';
-        return github.authorize(callback=url_for('authorized', _external=True, _scheme='http'))
+        return github.authorize(callback=url_for('authorized', _external=True, _scheme='https'))
     username = session['user_data']['login']
     for doc in mongoUser_save.find({"Username":username}):
         hintS1 = doc["People"]
@@ -197,7 +195,7 @@ def renderPage2():
         user_data_pprint = pprint.pformat(session['user_data'])
     else:
         user_data_pprint = '';
-        return github.authorize(callback=url_for('authorized', _external=True, _scheme='http'))
+        return github.authorize(callback=url_for('authorized', _external=True, _scheme='https'))
     return render_template('page2.html')
 
 @github.tokengetter

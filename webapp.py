@@ -85,7 +85,7 @@ def new_document():
             Places.remove(not_places[x])
             not_weapons.append(random.choice(Objects))
             Objects.remove(not_weapons[x])
-        rrandom = ["0", "1", "2", "3", "4", "5", "6", "7", "8"]
+        rrandom = [0, 1, 2, 3, 4, 5, 6, 7, 8]
         random.shuffle(rrandom)
         doc = {"Username": username, "Murderer": murderer, "Target_place": target_place, "Weapon": weapon, "People": not_murderers, "Places": not_places, "Objects": not_weapons, "People_locations": rrandom}
         mongoUser_save.insert_one(doc)       
@@ -123,7 +123,6 @@ def renderPage1():
         hintR1 = doc["Places"]
         hintW1 = doc["Objects"]
         rrandom = doc["People_locations"]
-        Suspects = ["adams", "tormey", "reussner", "barr", "jose", "lotze", "white", "white", "white"]
         murderer = doc["Murderer"]
         target_place = doc["Target_place"]
         weapon = doc["Weapon"]
@@ -137,6 +136,7 @@ def renderPage1():
     Possible_People = ["Mrs. Adams", "Tormey", "Mr. Reussner", "Mrs. Barr", "Jose", "Mr. Lotze"]
     Places = ["Quad", "Gym", "Hallway", "Senior Lawn", "Cafeteria", "VADA building", "CS academy", "Library", "Theater"]
     Objects = ["Wires", "Diet Dr Pepper", "Calculator", "Stapler", "Pencil", "Barbie"]
+    Suspects = ["adams", "tormey", "reussner", "barr", "jose", "lotze", "white", "white", "white"]
     Dialouge = []
     barr = mBarr[Possible_People.index(murderer)]
     adams = mAdams[Places.index(target_place)]

@@ -95,7 +95,7 @@ def new_document():
             Objects.remove(not_weapons[x])
         rrandom = ["0", "1", "2", "3", "4", "5", "6", "7", "8"]
         random.shuffle(rrandom)
-        doc = {"Username": username, "Murderer": murderer, "Target_place": target_place, "Weapon": weapon, "People": not_murderers, "Places": not_places, "Objects": not_weapons, "People_locations": random}
+        doc = {"Username": username, "Murderer": murderer, "Target_place": target_place, "Weapon": weapon, "People": not_murderers, "Places": not_places, "Objects": not_weapons, "People_locations": rrandom}
         mongoUser_save.insert_one(doc)       
     return render_template('home.html')
 
@@ -153,14 +153,7 @@ def renderPage1():
         hintS1 = doc["People"]
         hintR1 = doc["Places"]
         hintW1 = doc["Objects"]
-
-        
-    
-    
-    
-    return render_template('page1.html',dump_user_data=user_data_pprint,hintS1=hintS1[0],hintR1=hintR1[0],hintW1=hintW1[0])
-
-        random = doc["People_locations"]
+        rrandom = doc["People_locations"]
         Suspects = ["adams", "tormey", "reussner", "barr", "jose", "lotze", "white", "white", "white"]
         murderer = doc["Murderer"]
         target_place = doc["Target_place"]

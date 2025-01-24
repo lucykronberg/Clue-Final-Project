@@ -40,16 +40,10 @@ client = pymongo.MongoClient(connection_string)
 user_savedb = client[user_infodb_name]
 mongoUser_save = user_savedb['User_save']
 
-try:
-    client.admin.command('ping')
-    print("Pinged your deployment. You successfully connected to MongoDB!")
-except Exception as e:
-    print(e)
-
 @app.context_processor
 def inject_logged_in():
+    is_logged_in = 'github_token' in session
     return {"logged_in":('github_token' in session)}
-
 
 @app.route('/')
 def home():

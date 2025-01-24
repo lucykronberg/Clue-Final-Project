@@ -87,7 +87,7 @@ def new_document():
         random.shuffle(rrandom)
         rherrings = ["I couldn’t see anything! The lights went out…and the next thing I know Mr. Al is dead!", "I’m not sure of anything anymore. Except for one thing, you can’t trust anyone around this school.", "I don’t know! One minute Mr. Al was here next to us… and the next he’s gone!", "This kind of publicity is going to ruin the school!", "I don’t what happened! All I do know is… I’m going to have to find a job at SM now. Bleh.", "The lights must’ve gone out because of the nearby fire. Poor Mr. Al."]
         rherring = rherrings[random.randrange(0,6)]
-        doc = {"Username": username, "Murderer": murderer, "Target_place": target_place, "Weapon": weapon, "People": not_murderers, "Places": not_places, "Objects": not_weapons, "People_locations": rrandom, "Red_herring" = rherring, "Finished" = "No"}
+        doc = {"Username": username, "Murderer": murderer, "Target_place": target_place, "Weapon": weapon, "People": not_murderers, "Places": not_places, "Objects": not_weapons, "People_locations": rrandom, "Red_herring": rherring, "Finished": "No"}
         mongoUser_save.insert_one(doc)       
     return render_template('home.html')
 

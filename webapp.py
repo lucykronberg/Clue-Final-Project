@@ -48,8 +48,6 @@ def inject_logged_in():
 @app.route('/')
 def home():
     return render_template('home.html')
-    
-    """, file_state=file_state"""
 
 @app.route('/login')
 def login():   
@@ -114,6 +112,7 @@ def authorized():
 def renderPage1():
     if 'user_data' in session:
         user_data_pprint = pprint.pformat(session['user_data'])
+        new_document()
     else:
         user_data_pprint = '';
         return github.authorize(callback=url_for('authorized', _external=True, _scheme='https'))
@@ -164,6 +163,7 @@ def renderPage1():
 def renderPage2():
     if 'user_data' in session:
         user_data_pprint = pprint.pformat(session['user_data'])
+        new_document()
     else:
         user_data_pprint = '';
         return github.authorize(callback=url_for('authorized', _external=True, _scheme='https'))
